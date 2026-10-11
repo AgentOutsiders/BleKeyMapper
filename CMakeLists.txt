@@ -11,7 +11,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Add the executable target for the project
 add_executable(BleKeyMapper 
     src/main.cpp 
-    src/BleRule.cpp)
+    src/BleRule.cpp
+    src/RuleManager.cpp
+    src/ConfigLoader.cpp
+    )
 
 # Tell the compiler where to look for .h files
 target_include_directories(BleKeyMapper PRIVATE include)
@@ -31,3 +34,10 @@ else()
         -Werror      # Treats all warnings as errors (stops compilation)
     )
 endif()
+
+# Automatically copy the 'profiles' folder to the output directory after building
+add_custom_command(TARGET BleKeyMapper POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/profiles"
+    "$<TARGET_FILE_DIR:BleKeyMapper>/profiles"
+)

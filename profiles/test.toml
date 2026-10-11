@@ -1,0 +1,5 @@
+# Configuration file for BLE Universal Keystroke Mapper
+[[rules]]
+name = "Button A"
+payload = [ 0x0A, 0x02 ]
+keycode = 78

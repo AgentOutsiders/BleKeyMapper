@@ -2,7 +2,8 @@
 #include <vector>
 #include <cstdint>
 
-class BleRule {
+class BleRule 
+{
 private:
     // std::vector is a dynamic array (like an ArrayList)
     // An 8-bit integer, for reading hexadecimal

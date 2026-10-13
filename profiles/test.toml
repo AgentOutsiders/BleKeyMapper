@@ -1,5 +1,7 @@
 # Configuration file for BLE Universal Keystroke Mapper
+mac_address = "AA:BB:CC:DD:EE:FF"
+
 [[rules]]
 name = "Button A"
-payload = [ 0x0A, 0x02 ]
+payload = [ 0x11, 0x55, 0xFF ]
 keycode = 78

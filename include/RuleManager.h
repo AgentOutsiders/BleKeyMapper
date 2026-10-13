@@ -1,20 +1,30 @@
 #pragma once
 #include <vector>
+#include <string>
 #include <optional>
+#include <unordered_map>
+#include <cstdint>
 #include "BleRule.h"
 
 class RuleManager 
 {
 private:
-    std::vector<BleRule> rules;
+    // Maps a device MAC address to its specific list of rules
+    std::unordered_map<std::string, std::vector<BleRule>> deviceRules;
 
 public:
     // Default constructor
     RuleManager() = default;
 
-    // Add a new rule to the manager
-    void addRule(const BleRule& rule);
+    // Associates a rule with a specific device MAC address
+    void addRule(const std::string& macAddress, const BleRule& rule);
 
-    // Evaluate a frame. Returns an int if found, or "nothing" if unknown.
-    std::optional<int> evaluate(const std::vector<uint8_t>& frame) const;
+    // Evaluates a frame only against the rules of the device that sent it
+    std::optional<int> evaluate(
+        const std::string& macAddress, 
+        const std::vector<uint8_t>& frame
+    ) const;
+
+    // Returns the list of all known MAC addresses for the BLE scanner
+    std::vector<std::string> getRegisteredMacs() const;
 };

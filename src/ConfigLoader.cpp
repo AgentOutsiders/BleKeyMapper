@@ -30,6 +30,14 @@ void ConfigLoader::loadProfilesFromDirectory(const std::string& directoryPath, R
                 // Parse the TOML file
                 // toml::table is a map
                 toml::table config = toml::parse_file(entry.path().string());
+
+                std::string macAddress = config["mac_address"].value_or("");
+                if (macAddress.empty()) 
+                {
+                    std::cerr << "[WARN] Skipping profile with missing 'mac_address': " << entry.path().filename() << std::endl;
+                    continue;
+                }
+
                 toml::array* rulesArray = config.get_as<toml::array>("rules");
 
                 if (rulesArray != nullptr) 
@@ -62,7 +70,8 @@ void ConfigLoader::loadProfilesFromDirectory(const std::string& directoryPath, R
                             // If valid, inject into the RuleManager
                             if (!payload.empty() && keycode != -1) 
                             {
-                                manager.addRule(BleRule(payload, keycode));
+                                BleRule newRule(payload, static_cast<int>(keycode));
+                                manager.addRule(macAddress, newRule);
                                 std::cout << "[CONFIG] Successfully loaded rule -> Keycode: " << keycode << std::endl;
                             }
                         }

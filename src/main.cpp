@@ -22,7 +22,7 @@ int main()
     std::vector<uint8_t> incomingFrame = {0x11, 0x55, 0xFF}; 
     std::cout << "[INFO] Received frame from OS..." << std::endl;
 
-    auto result = engine.evaluate(incomingFrame);
+    auto result = engine.evaluate("AA:BB:CC:DD:EE:FF", incomingFrame);
     
     if (result.has_value()) 
     {

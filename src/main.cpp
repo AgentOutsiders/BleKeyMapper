@@ -2,6 +2,7 @@
 #include <vector>
 #include "RuleManager.h"
 #include "ConfigLoader.h"
+#include "BleScanner.h"
 
 int main() 
 {
@@ -31,6 +32,9 @@ int main()
     {
         std::cout << "[WARN] Unrecognized frame dropped." << std::endl;
     }
+
+    BleScanner radar;
+    radar.scanForDevices();
 
     return 0;
 }

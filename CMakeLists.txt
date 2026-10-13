@@ -8,12 +8,25 @@ project(BleKeyMapper CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+include(FetchContent)
+
+# Declare the SimpleBLE repository
+FetchContent_Declare(
+    SimpleBLE
+    GIT_REPOSITORY https://github.com/OpenBluetoothToolbox/SimpleBLE.git
+    GIT_TAG        main
+    SOURCE_SUBDIR  simpleble
+)
+
+FetchContent_MakeAvailable(SimpleBLE)
+
 # Add the executable target for the project
 add_executable(BleKeyMapper 
     src/main.cpp 
     src/BleRule.cpp
     src/RuleManager.cpp
     src/ConfigLoader.cpp
+    src/BleScanner.cpp
     )
 
 # Tell the compiler where to look for .h files
@@ -41,3 +54,5 @@ add_custom_command(TARGET BleKeyMapper POST_BUILD
     "${CMAKE_CURRENT_SOURCE_DIR}/profiles"
     "$<TARGET_FILE_DIR:BleKeyMapper>/profiles"
 )
+
+target_link_libraries(BleKeyMapper PRIVATE simpleble)

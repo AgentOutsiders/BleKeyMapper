@@ -1,4 +1,4 @@
-#include "ConfigLoader.h"
+#include "ConfigStorage.h"
 #include "toml.hpp"
 #include <filesystem>
 #include <iostream>
@@ -7,7 +7,7 @@
 // Alias for convenience
 namespace fs = std::filesystem;
 
-void ConfigLoader::loadProfilesFromDirectory(const std::string& directoryPath, RuleManager& manager) 
+void ConfigStorage::loadProfilesFromDirectory(const std::string& directoryPath, RuleManager& manager) 
 {
     std::cout << "[INFO] Scanning for TOML profiles in: " << directoryPath << std::endl;
 
@@ -86,7 +86,7 @@ void ConfigLoader::loadProfilesFromDirectory(const std::string& directoryPath, R
     }
 }
 
-void ConfigLoader::saveRuleToProfile(
+void ConfigStorage::saveRuleToProfile(
     const std::string& directoryPath, 
     const std::string& profileName, 
     const std::string& ruleName, 

@@ -2,11 +2,11 @@
 #include <string>
 #include "RuleManager.h"
 
-class ConfigLoader 
+class ConfigStorage 
 {
 public:
     // Default constructor
-    ConfigLoader() = default;
+    ConfigStorage() = default;
 
     // Scans the directory and injects found rules into the provided manager
     void loadProfilesFromDirectory(const std::string& directoryPath, RuleManager& manager);

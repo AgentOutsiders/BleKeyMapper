@@ -25,7 +25,7 @@ add_executable(BleKeyMapper
     src/main.cpp 
     src/BleRule.cpp
     src/RuleManager.cpp
-    src/ConfigLoader.cpp
+    src/ConfigStorage.cpp
     src/BleScanner.cpp
     )
 

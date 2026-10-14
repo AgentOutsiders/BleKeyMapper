@@ -1,8 +1,8 @@
 #include "BleRule.h"
 
 // Constructor
-BleRule::BleRule(std::vector<uint8_t> payload, int keyCode) 
-    : expectedPayload(payload), targetKeyCode(keyCode) {}
+BleRule::BleRule(const std::vector<uint8_t>& payload, const std::vector<int>& keycodes) 
+    : expectedPayload(payload), targetKeycodes(keycodes) {}
 
 // Method to check if the received frame matches what we expect
 bool BleRule::match(const std::vector<uint8_t>& incomingData) const 
@@ -10,7 +10,7 @@ bool BleRule::match(const std::vector<uint8_t>& incomingData) const
     return expectedPayload == incomingData;
 }
 
-int BleRule::getKeyCode() const 
+std::vector<int> BleRule::getKeyCodes() const 
 {
-    return targetKeyCode;
+    return targetKeycodes;
 }

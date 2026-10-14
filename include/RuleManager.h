@@ -19,8 +19,11 @@ public:
     // Associates a rule with a specific device MAC address
     void addRule(const std::string& macAddress, const BleRule& rule);
 
+    // Checks if a profile has already registered this MAC address
+    bool hasDevice(const std::string& macAddress) const;
+
     // Evaluates a frame only against the rules of the device that sent it
-    std::optional<int> evaluate(
+    std::optional<std::vector<int>> evaluate(
         const std::string& macAddress, 
         const std::vector<uint8_t>& frame
     ) const;

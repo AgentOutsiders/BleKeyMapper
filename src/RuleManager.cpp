@@ -6,7 +6,12 @@ void RuleManager::addRule(const std::string& macAddress, const BleRule& rule)
     deviceRules[macAddress].push_back(rule);
 }
 
-std::optional<int> RuleManager::evaluate(
+bool RuleManager::hasDevice(const std::string& macAddress) const 
+{
+    return deviceRules.find(macAddress) != deviceRules.end();
+}
+
+std::optional<std::vector<int>> RuleManager::evaluate(
     const std::string& macAddress, 
     const std::vector<uint8_t>& frame) const 
 {
@@ -22,7 +27,7 @@ std::optional<int> RuleManager::evaluate(
     {
         if (rule.match(frame)) 
         {
-            return rule.getKeyCode();
+            return rule.getKeyCodes();
         }
     }
 

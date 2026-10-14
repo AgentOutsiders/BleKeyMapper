@@ -15,8 +15,9 @@ public:
     void saveRuleToProfile(
         const std::string& directoryPath, 
         const std::string& profileName, 
+        const std::string& macAddress,
         const std::string& ruleName, 
         const std::vector<uint8_t>& payload, 
-        int keycode
+        const std::vector<int>& keycodes
     );
 };

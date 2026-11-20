@@ -1,0 +1,17 @@
+BleKeyMapper
+Copyright 2026 Alexis Danrée (AgentOutsiders)
+
+This product includes software developed by third parties:
+
+1. SimpleBLE
+   License: Business Source License 1.1 (BUSL-1.1)
+   Notice: SimpleBLE is available under the Business Source License 1.1 (BUSL-1.1).
+   It is free to use for non-commercial purposes and requires a commercial license
+   for commercial use. Each version converts to the GNU General Public License
+   version 3 four years after its initial release. Qualifying non-commercial users
+   may instead continue using and distributing that version under the original
+   BUSL-1.1 terms through the Non-Commercial Perpetual Use Grant in LICENSE.md.
+
+2. toml++
+   License: MIT License
+   Notice: Copyright (c) Mark Gillard. Used under the terms of the MIT License.
